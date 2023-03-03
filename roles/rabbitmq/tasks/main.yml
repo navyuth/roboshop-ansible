@@ -28,8 +28,8 @@
 - name: Setup Erlang Repo
   ansible.builtin.shell: https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
 
-- name: Install RabbitMQ Repos
-  ansible.builtin.shell: ttps://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
+- name: Install RabbitMQ Repo
+  ansible.builtin.shell: https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
 
 - name: Install RabbitMQ & Erlang
   ansible.builtin.yum:
