@@ -1,7 +1,4 @@
 
-
-#    systemctl restart nginx
-
 - name: Install Nginx
   ansible.builtin.yum:
     name: nginx
@@ -32,6 +29,6 @@
   ansible.builtin.systemd:
     name: nginx
     state: restarted
-    enabled: "enable"
+    enabled: true
     # Enable & restart the Nginx will be done by above module
 
