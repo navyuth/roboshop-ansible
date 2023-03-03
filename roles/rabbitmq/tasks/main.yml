@@ -1,3 +1,55 @@
-- name: Print Rabbitmq
-  debug:
-    msg: rabbitmq
+#roboshop_app_password=$1
+#if [ -z "${roboshop_app_password}" ]; then
+#echo -e "\e[31mMissing RabbitMQ App User Password Argument\e[0m"
+#exit 1
+#fi
+#
+
+
+#print_head "Enable RabbitMQ service"
+#systemctl enable rabbitmq-server &>>${log_file}
+#status_check $?
+#
+#print_head "Start RabbitMQ service"
+#systemctl start rabbitmq-server &>>${log_file}
+#status_check $?
+#
+#print_head "Add Application user"
+#rabbitmqctl list_users | grep roboshop &>>${log_file}
+#if [ $? -ne 0 ]; then
+#rabbitmqctl add_user roboshop ${roboshop_app_password} &>>${log_file}
+#fi
+#status_check $?
+#
+#print_head "Configure Permissions for App user"
+#rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>${log_file}
+#status_check $?
+
+- name: Setup Erlang Repo
+  ansible.builtin.shell: https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.sh | bash
+
+- name: Install RabbitMQ Repos
+  ansible.builtin.shell: ttps://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
+
+- name: Install RabbitMQ & Erlang
+  ansible.builtin.yum:
+    name:
+      - rabbitmq
+      - erlang
+    state: installed
+
+- name: Enable & Start RabbitMQ service
+  ansible.builtin.systemd:
+    name: rabbitmq
+    state: started
+    enabled: yes
+
+- name: Add Application User
+  community.rabbitmq.rabbitmq_user:
+    user: roboshop
+    password: roboshop123
+    vhost: /
+    configure_priv: .*
+    read_priv: .*
+    write_priv: .*
+    state: present
