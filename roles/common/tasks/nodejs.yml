@@ -15,7 +15,7 @@
   ansible.builtin.import_tasks:
     file: app-prereq.yml
 
-- name: Installa NodeJS Dependencies
+- name: Install NodeJS Dependencies
   community.general.npm: # Module to install NPM
     path: /app
 
