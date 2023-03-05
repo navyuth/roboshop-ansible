@@ -1,0 +1,27 @@
+
+#
+#      sed -i -e "s/ROBOSHOP_USER_PASSWORD/${roboshop_app_password}" /etc/systemd/system/${component}.service &>>${log_file}
+#
+#      print_head "Reload  SystemD"
+#      systemctl daemon-reload &>>${log_file}
+#      status_check $?
+#
+#      print_head "Enable ${component} Service"
+#      systemctl enable ${component} &>>${log_file}
+#      status_check $?
+#
+#      print_head "Restart ${component} Service"
+#      systemctl restart ${component} &>>${log_file}
+#      status_check $?
+
+- name: Copy SystemD service file
+  ansible.builtin.copy:
+    src: "{{component}}".service
+    dest: /etc/systemd/system/{{component}}.service
+
+- name: Start Service
+  ansible.builtin.systend:
+    name: "{{ component }}"
+    state: restarted
+    enabled: yes
+    daemon-reload: true
