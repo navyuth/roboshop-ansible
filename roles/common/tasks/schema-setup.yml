@@ -1,7 +1,4 @@
 
-#      print_head "Load Schema"
-#      mongo --host mongodb-dev.devopscourse.online </app/schema/${component}.js &>>${log_file}
-#      status_check $?
 - name: MongoDB Schema
   when: schema_type == "mongo"
   block:
@@ -23,9 +20,8 @@
   block:
     - name: Install MySQL Client
       ansible.builtin.yum:
-          name: mysql
-          state: installed
+        name: mysql
+        state: installed
 
     - name: Load schema
       ansible.builtin.shell: mysql -h mysql-dev.devopscourse.online -uroot -p RoboShop@1 < /app/schema/{{component}}.sql
-
