@@ -1,0 +1,23 @@
+
+#  systemd_setup
+
+- name: Install Golang
+  ansible.builtin.yum:
+    name: golang
+    state: installed
+
+- name: App Pre-requisites
+  ansible.builtin.import_tasks:
+    file: app-prereq.yml
+
+- name: Download Maven Dependencies
+  ansible.builtin.shell: go mod init dispatch; go get; go built
+  args:
+    chdir: /app # Change the directory of the downloaded files
+
+- name: SystemD Setup
+  ansible.builtin.import_tasks:
+    file: systemd-setup.yml
+
+
+
