@@ -1,15 +1,35 @@
 
-#  if [ "${schema_type}" == "mongo" ]; then
-#
-#      print_head "Copy MongoDB Repo File"
-#      cp ${code_dir}/configs/mongodb.repo /etc/yum.repos.d/mongodb.repo &>>${log_file}
-#      status_check $?
-#
-#      print_head "Install Mongo Client"
-#      yum install mongodb-org-shell -y &>>${log_file}
-#      status_check $?
-#
 #      print_head "Load Schema"
 #      mongo --host mongodb-dev.devopscourse.online </app/schema/${component}.js &>>${log_file}
 #      status_check $?
+- name: MongoDB Schema
+  when: schema_type == "mongo"
+  block:
+  - name: Setup MongoDB repo file
+    ansible.builtin.copy:
+      src: mongodb.repo
+      dest: /etc/yum.repos.d/mongodb.repo
+
+  - name: Install Mongo Client
+    ansible.builtin.yum:
+      name: mongo-org-shell
+      state: installed
+
+  - name: Load Schema
+      ansible.builtin.shell: mongo --host mongodb-dev.devopscourse.online </app/schema/${component}.js
+
+- name: MySQL Schema
+  when: schema_type == "mysql"
+  block:
+    - name: Install MySQL Client
+        ansible.builtin.yum:
+          name: mysql
+          state: installed
+
+    - name: Load schema
+        ansible.builtin.shell: mysql -h mysql-dev.devopscourse.online -uroot -p RoboShop@1 < /app/schema/{{component}}.sql
+
+
+
+
 
