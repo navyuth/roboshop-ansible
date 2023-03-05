@@ -1,5 +1,5 @@
 - name: MongoDB Schema
-  when: schema_type == "mongo"
+  when: schema_type == mongo
   block:
     - name: Setup MongoDB repo file
       ansible.builtin.copy:
