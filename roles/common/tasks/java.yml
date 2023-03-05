@@ -25,7 +25,7 @@
     chdir: /app # Change the directory of the downloaded files
 
 - name: Schema Setup
-  ansible.builtin.imports_tasks:
+  ansible.builtin.import_tasks:
     file: schema-setup.yml
   when: schema_type is defined
 
