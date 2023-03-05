@@ -1,11 +1,4 @@
 
-#
-#      sed -i -e "s/ROBOSHOP_USER_PASSWORD/${roboshop_app_password}" /etc/systemd/system/${component}.service &>>${log_file}
-#
-#      print_head "Reload  SystemD"
-#      systemctl daemon-reload &>>${log_file}
-#      status_check $?
-#
 #      print_head "Enable ${component} Service"
 #      systemctl enable ${component} &>>${log_file}
 #      status_check $?
@@ -23,5 +16,5 @@
   ansible.builtin.systend:
     name: "{{ component }}"
     state: restarted
-    enabled: yes
+    enabled: true
     daemon-reload: true
