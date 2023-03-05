@@ -3,7 +3,7 @@
 #    systemd_setup
 #}
 
-- name: Configure NodeJs Repo
+- name: Configure {{ component }} Repo
   ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
 
 - name: Install NoderJS
@@ -24,7 +24,8 @@
     state: enable
     enabled: yes
 
-#- name: Schema Setup
-#  ansible.builtin.importa_tasks:
-#    file: schema-setup.yml
+- name: Schema Setup
+  ansible.builtin.importa_tasks:
+    file: schema-setup.yml
+  when: schema_type os defined
 
