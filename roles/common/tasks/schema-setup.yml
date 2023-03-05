@@ -9,7 +9,7 @@
 
     - name: Install Mongo Client
       ansible.builtin.yum:
-        name: mongo-org-shell
+        name: mongodb-org-shell
         state: installed
 
     - name: Load Schema
