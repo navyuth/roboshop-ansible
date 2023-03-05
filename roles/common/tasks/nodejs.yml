@@ -25,7 +25,7 @@
     enabled: yes
 
 - name: Schema Setup
-  ansible.builtin.importa_tasks:
+  ansible.builtin.import_tasks:
     file: schema-setup.yml
   when: schema_type os defined
 
