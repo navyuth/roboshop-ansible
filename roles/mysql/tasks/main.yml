@@ -1,8 +1,4 @@
 
-#print_head "Start MySQL Service"
-#systemctl start mysqld &>>${log_file}
-#status_check $?
-#
 #print_head "Set Root Password"
 #echo show databases | mysql -uroot -p${mysql_root_password} &>>${log_file}
 #if [ $? -ne 0 ]; then

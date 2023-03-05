@@ -1,0 +1,41 @@
+#  print_head "Install Python"
+#  yum install python36 gcc python3-devel -y &>>${log_file}
+#  status_check $?
+#
+#  app_prereq_setup
+#
+#  print_head "Download Dependencies"
+#  pip3.6 install -r requirements.txt &>>${log_file}
+#  status_check $?
+#
+#  # Schema setup function
+#  schema_setup
+#
+#  # SystemD setup function
+#  systemd_setup
+
+- name: Installl Python
+  ansible.builtin.yum:
+    name:
+      - python
+      - gcc
+      - python3-devel
+    state: installed
+
+- name: App Pre-requisites
+  ansible.builtin.import_tasks:
+    file: app-prereq.yml
+
+- name: download Python Dedpendencies
+  ansible.builtin.pip:
+    requirements: /app/requirements.txt
+    executable: pip3.6
+
+- name: Schema-Setup
+  ansible.builtin.import_tasks:
+    file: schema-setup.yml
+  when: schema_type is defined
+
+- name: systemD Service
+  ansible.builtin.import_tasks:
+    file: systemd-setup.yml
