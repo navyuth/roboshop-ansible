@@ -19,12 +19,12 @@
   community.general.npm: # Module to install NPM
     path: /app
 
-- name: ENable & start Service
+- name: Enable & start Service
   ansible.builtin.systemd:
     state: enable
     enabled: yes
 
-- name: Schema Setup
-  ansible.builtin.importa_tasks:
-    file: schema-setup.yml
+#- name: Schema Setup
+#  ansible.builtin.importa_tasks:
+#    file: schema-setup.yml
 
