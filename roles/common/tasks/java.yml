@@ -24,6 +24,11 @@
   args:
     chdir: /app # Change the directory of the downloaded files
 
+- name: Schema Setup
+  ansible.builtin.imports_tasks:
+    file: schema_setup.yml
+  when: schema_type is defined
+
 - name: SystemD Setup
   ansible.builtin.import_tasks:
     file: systemd-setup.yml
