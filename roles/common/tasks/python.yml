@@ -14,10 +14,10 @@
 #  # SystemD setup function
 #  systemd_setup
 
-- name: Installl Python
+- name: Install Python
   ansible.builtin.yum:
     name:
-      - python
+      - python36
       - gcc
       - python3-devel
     state: installed
@@ -26,16 +26,16 @@
   ansible.builtin.import_tasks:
     file: app-prereq.yml
 
-- name: download Python Dedpendencies
+- name: Install Python Dependencies
   ansible.builtin.pip:
     requirements: /app/requirements.txt
     executable: pip3.6
 
-- name: Schema-Setup
+- name: Schema Setup
   ansible.builtin.import_tasks:
     file: schema-setup.yml
   when: schema_type is defined
 
-- name: systemD Service
+- name: SystemD Setup
   ansible.builtin.import_tasks:
     file: systemd-setup.yml
