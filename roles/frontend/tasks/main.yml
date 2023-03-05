@@ -29,6 +29,6 @@
   ansible.builtin.systemd:
     name: nginx
     state: restarted
-    enabled: true
+    enabled: true # Yes is not working here
     # Enable & restart the Nginx will be done by above module
 
