@@ -1,5 +1,5 @@
 - name: MongoDB Schema
-  when: schema_type == 'mongo'
+  when: schema_type == "mongo"
   block:
     - name: Setup MongoDB repo file
       ansible.builtin.copy:
@@ -15,7 +15,7 @@
       ansible.builtin.shell: mongo --host mongodb-dev.devopscourse.online </app/schema/{{component}}.js
 
 - name: MySQL Schema
-  when: schema_type == 'mysql'
+  when: schema_type == "mysql"
   block:
     - name: Install MySQL Client
       ansible.builtin.yum:
