@@ -1,12 +1,4 @@
 
-#      print_head "Enable ${component} Service"
-#      systemctl enable ${component} &>>${log_file}
-#      status_check $?
-#
-#      print_head "Restart ${component} Service"
-#      systemctl restart ${component} &>>${log_file}
-#      status_check $?
-
 - name: Copy SystemD service file
   ansible.builtin.template:
     src: "{{component}}.service"
