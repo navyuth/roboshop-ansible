@@ -4,4 +4,17 @@
     dest: /opt
     remote_src: true
 
+- name: Copy SystemD exporter
+  ansible.builtin.systemd:
+    name: exporter.service
+    dest: /etc/systemd/system/node_exporter.service
+
+- name: Start Exporter service
+  ansible.builtin.systemd:
+    name: node_exporter
+    state: restarted
+    enabled: yes
+
+
+
 
