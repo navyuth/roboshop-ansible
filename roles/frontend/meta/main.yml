@@ -1,2 +1,4 @@
 dependencies:
   - role: common
+
+# Prometheus will skip for components for which we haven't installed node exporter.
