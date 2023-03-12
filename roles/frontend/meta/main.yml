@@ -1,4 +1,4 @@
 dependencies:
   - role: common
 
-# Prometheus will skip for components for which we haven't installed node exporter.
+# Prometheus should monitor only 6 components whose Monitor tag is yes. So, added this role only to those components.
