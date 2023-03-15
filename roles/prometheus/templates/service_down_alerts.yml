@@ -11,5 +11,4 @@ groups:
       appName: "{{ item }}"
     annotations:
       summary: Service Down on Some Server - Service Name - {{ item }}.service
-
   {% endfor %}  # Jinga2 template for end For Loop
