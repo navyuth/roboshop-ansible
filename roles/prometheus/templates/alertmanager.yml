@@ -11,8 +11,6 @@ receivers:
       - to: navyuth@gmail.com
         from: navyuth@gmail.com
         smarthost: "email-smtp.us-east-1.amazonaws.com:587"  #SMPT endpoint from SES
-
-        # Created below Username & password in SES
         auth_username: "${{SES_SMTP_USERNAME}}"
         auth_password: "${{SES_SMTP_PASSWORD}}"
         require_tls: true
