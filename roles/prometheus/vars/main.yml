@@ -1,6 +1,10 @@
 components:
-  - cart
-  - catalogue
+  - { name: Cart, service_name: cart }
+  - { name: Catalogue, service_name: catalogue }
+  - { name: Shipping, service_name: shipping }
+  - { name: User, service_name: user }
+  - { name: Payment, service_name: payment }
+  - { name: Frontend, service_name: nginx }
 
 alert_files:
   - service-down-alerts.yml
