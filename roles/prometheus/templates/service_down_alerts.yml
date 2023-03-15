@@ -8,7 +8,7 @@ groups:
     for: 30s
     labels:
       severity: critical
-      appName: cart
+      appName: {{ item }}
     annotations:
       summary: Service Down on Some Server - Service Name - {{ item }}.service
 
