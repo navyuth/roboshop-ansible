@@ -1,0 +1,11 @@
+groups:
+- name: RoboShop
+  rules:
+  - alert: ServerDown
+    expr: up < 1 # If up value is less than 1, decides as the server is down
+    for: 30s
+    labels:
+      severity: critical
+    annotations:
+      summary: Server Down
+
