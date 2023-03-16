@@ -8,5 +8,5 @@
     name: logstash
     state: restarted
 
-- name: Check Logstash is started or not
+- name: Check the status of Logstash
   ansible.builtin.shell: sleep 60 ; netstat -lntp | grep 5044
