@@ -147,7 +147,7 @@ setup.kibana:
 # ------------------------------ Logstash Output -------------------------------
 output.logstash:
   # The Logstash hosts
-  hosts: ["3.227.22.127:5044"] # Frontend hostname
+  hosts: ["3.90.41.200:5044"] # ELk hostname
 
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications
