@@ -29,7 +29,7 @@ filebeat.inputs:
 
   # Paths that should be crawled and fetched. Glob based paths.
   paths:
-    - /var/log/nginx/access.log
+    - {{ log_file }}
 
     #- c:\programdata\elasticsearch\logs\*
 
@@ -47,8 +47,8 @@ filebeat.inputs:
 
   # Optional additional fields. These fields can be freely picked
   # to add additional information to the crawled log files for filtering
-  #fields:
-   # component: {{ component }}
+  fields:
+    component: {{ component }}
 
 # ============================== Filebeat modules ==============================
 
@@ -147,7 +147,7 @@ setup.kibana:
 # ------------------------------ Logstash Output -------------------------------
 output.logstash:
   # The Logstash hosts
-  hosts: ["172.31.80.230:5044"] # ELK server hostname
+  hosts: ["172.31.93.98:5044"]
 
   # Optional SSL. By default is off.
   # List of root certificates for HTTPS server verifications
