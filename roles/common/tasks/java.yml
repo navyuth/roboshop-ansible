@@ -1,15 +1,4 @@
 
-#  print_head "Download Dependencies and package"
-#  mvn clean package &>>${log_file}
-#  mv target/${component}-1.0.jar ${component}.jar &>>${log_file}
-#  status_check $?
-#
-#  # Schema setup function
-#  schema_setup
-#
-#  # SystemD setup function
-#  systemd_setup
-
 - name: Install Maven
   ansible.builtin.yum:
     name: maven
